@@ -75,11 +75,6 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-print(os.environ.get("POSTGRES_USER"))
-print("USER")
-print("USER")
-print("USER")
-print("USER")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
