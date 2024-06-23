@@ -29,8 +29,8 @@ class FilmFactory(BaseFactory):
     class Meta:
         model = models.Film
 
-    name = factory.Faker("words", nb=2)
-    description = factory.Faker("words", nb=20)
+    name = factory.Faker("sentence", nb_words=3)
+    description = factory.Faker("sentence", nb_words=20)
     author = factory.SubFactory(AuthorFactory)
     user = factory.SubFactory(UserFactory)
 
@@ -48,5 +48,5 @@ class CommentFactory(BaseFactory):
     class Meta:
         model = models.Film
 
-    name = factory.Faker("words", nb=2)
-    description = factory.Faker("words", nb=20)
+    name = factory.Faker("sentence", nb_words=3)
+    description = factory.Faker("sentence", nb_words=20)

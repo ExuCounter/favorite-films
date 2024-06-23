@@ -5,7 +5,7 @@ from argon2.exceptions import VerifyMismatchError
 ph = PasswordHasher()
 
 
-class UserException(BaseException):
+class UserOperationException(BaseException):
     ...
 
 
@@ -13,7 +13,7 @@ class UserOperation:
     def get_instance_by_id(self, id) -> User:
         return User.objects.get(id=id)
 
-    def sign_up(self, login, password) -> User | UserException:
+    def sign_up(self, login, password) -> User | UserOperationException:
         try:
             password_hash = ph.hash(password)
             user = User(login=login, password=password_hash)
@@ -21,7 +21,7 @@ class UserOperation:
 
             return user
         except ValueError:
-            return UserException("Can't register user")
+            return UserOperationException("Can't register user")
 
     def authenticate(self, login, password) -> bool:
         try:
