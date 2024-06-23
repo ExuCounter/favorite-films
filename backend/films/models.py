@@ -5,7 +5,10 @@ from django.db import models
 
 class User(models.Model):
     login = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=255)
+
+    def __repr__(self):
+        return f"User(login={self.login})"
 
 
 class Author(models.Model):

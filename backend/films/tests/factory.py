@@ -1,5 +1,8 @@
 import factory
 import films.models as models
+from argon2 import PasswordHasher
+
+ph = PasswordHasher()
 
 
 class BaseFactory(factory.django.DjangoModelFactory):
