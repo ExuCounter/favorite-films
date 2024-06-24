@@ -8,6 +8,7 @@ pytest-django = "*"
 argon2-cffi = "*"
 faker = "*"
 factory-boy = "*"
+tvdb-v4-official = "*"
 
 [dev-packages]
 

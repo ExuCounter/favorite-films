@@ -20,6 +20,14 @@ class Author(models.Model):
         return f"Author(first_name='{self.first_name}', last_name='{self.last_name}')"
 
 
+class TmdbFilm(models.Model):
+    tmdb_id = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __repr__(self):
+        return f"TmdbFilm(tmdb_id='{self.tmdb_id}', user='{self.user.__repr__()}')"
+
+
 class Film(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

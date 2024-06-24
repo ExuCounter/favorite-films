@@ -1,3 +1,5 @@
 export POSTGRES_DB=films
 export POSTGRES_PASSWORD=postgres
 export POSTGRES_USER=postgres
+# REQUIRED
+export TMDB_API_TOKEN=
