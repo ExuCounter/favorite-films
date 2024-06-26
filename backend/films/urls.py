@@ -1,6 +1,8 @@
 from django.urls import path
-from films.views import add_film
+import films.views as views
 
 urlpatterns = [
-    path('add', add_film)
+    path('home', views.home),
+    path('register', views.register),
+    path('login', views.login)
 ]

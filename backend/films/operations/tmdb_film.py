@@ -18,9 +18,9 @@ class TmdbFilmOperation:
         result = self.tvdb.search(query)
         return result[0:limit]
 
-    def create(self, tmdb_id):
+    def add_to_favorites(self, tmdb_id):
         return TmdbFilm.objects.create(tmdb_id)
 
-    def delete(self, tmdb_id):
+    def remove_from_favorites(self, tmdb_id):
         film = TmdbFilm.objects.get(id=tmdb_id)
         return film.delete()

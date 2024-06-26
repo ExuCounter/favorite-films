@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+input:last-child {
+  margin-bottom: 0;
+}
+
+button {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}

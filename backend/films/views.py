@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 # Create your views here.
 
 
-def add_film(request):
-    if request.method == "GET":
-        return HttpResponse("result")
+def home(request):
+    return render(request, "films/home.html")
+
+
+def login(request):
+    return render(request, "films/login.html")
+
+
+def register(request):
+    return render(request, "films/register.html")

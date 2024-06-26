@@ -9,6 +9,7 @@ argon2-cffi = "*"
 faker = "*"
 factory-boy = "*"
 tvdb-v4-official = "*"
+django-browser-reload = "*"
 
 [dev-packages]
 
