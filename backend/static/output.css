@@ -571,12 +571,12 @@ video {
   height: 100dvh;
 }
 
-.w-\[100dvw\] {
-  width: 100dvw;
-}
-
 .w-\[100\%\] {
   width: 100%;
+}
+
+.w-\[100dvw\] {
+  width: 100dvw;
 }
 
 .max-w-\[500px\] {
