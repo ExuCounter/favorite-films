@@ -4,6 +4,7 @@ from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from films.forms.LogoutForm import LogoutForm
+from django.urls import reverse
 
 
 class LoginView(FormView):
@@ -17,7 +18,7 @@ class LoginView(FormView):
         status = form.sign_in(self.request)
 
         if status == "error":
-            return HttpResponseRedirect("/login")
+            return HttpResponseRedirect(reverse("login"))
 
         return super().form_valid(form)
 
@@ -46,7 +47,7 @@ class HomeView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get("Authorization", None) is None:
-            return HttpResponseRedirect("/register")
+            return HttpResponseRedirect(reverse("register"))
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -56,4 +57,4 @@ def logout(request):
         form = LogoutForm()
         form.logout(request=request)
 
-        return HttpResponseRedirect("/login")
+        return HttpResponseRedirect(reverse("login"))
