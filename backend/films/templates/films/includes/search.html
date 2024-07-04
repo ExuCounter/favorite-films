@@ -1,0 +1,53 @@
+<div>
+  <input name="query" id="search-input" />
+  <ul id="search-list"></ul>
+</div>
+
+<script>
+  const debounceFn = (fn, delay) => {
+    let timeoutId;
+    return function (...args) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
+
+  const eventListener = async (event) => {
+    const query = event.target.value;
+
+    if (query.length < 3) {
+      return;
+    }
+
+    const searchList = document.getElementById("search-list");
+
+    searchList.innerHTML = "<li>Loading...</li>";
+
+    const response = await fetch(`/search`, {
+      method: "POST",
+      body: JSON.stringify({
+        query,
+        limit: 10,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+    });
+    const data = await response.json();
+
+    const searchItems = data.films.map((item) => {
+      return `<li><div class="flex items-center"><img src="${item.thumbnail}" class="w-[30px] h-[30px]" />${item.name}</div></li>`;
+    });
+    searchList.innerHTML = searchItems.join("");
+  };
+
+  const debouncedEventListener = debounceFn(eventListener, 300);
+
+  const searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", debouncedEventListener);
+</script>

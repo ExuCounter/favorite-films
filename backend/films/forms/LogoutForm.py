@@ -8,6 +8,5 @@ class LogoutForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def logout(self, request):
-        print(request)
         self.auth_operation.logout(request=request)
         return "ok"

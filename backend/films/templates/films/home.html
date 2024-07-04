@@ -4,10 +4,14 @@
 <!-- -->
 {% block body %}
 <div>
-  {% include "films/includes/logout.html" %}
+  {% include "films/includes/logout_form.html" %}
   <!-- -->
   Hello, my friend, it's your start in the world of the backend programming -
   <!-- -->
   {{ user.login }}
+
+  <div>
+    {% include "films/includes/search.html" %}
+  </div>
 </div>
 {% endblock %}

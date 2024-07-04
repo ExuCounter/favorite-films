@@ -2,9 +2,11 @@ from films.forms.LoginForm import LoginForm
 from films.forms.RegisterForm import RegisterForm
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from films.forms.LogoutForm import LogoutForm
+from films.operations.tmdb_film import TmdbFilmOperation
 from django.urls import reverse
+import json
 
 
 class LoginView(FormView):
@@ -38,6 +40,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         try:
             context["user"] = self.request.GET["user"] or None
         except KeyError:
@@ -58,3 +61,15 @@ def logout(request):
         form.logout(request=request)
 
         return HttpResponseRedirect(reverse("login"))
+
+
+def search(request):
+    if request.method == "POST":
+        tmdb_film_operation = TmdbFilmOperation()
+        body = json.loads(request.body)
+
+        if len(body["query"]) > 2:
+            data = tmdb_film_operation.search(query=body["query"], limit=body["limit"] or 10)
+            return JsonResponse({"films": data})
+        else:
+            return JsonResponse({"films": []})
