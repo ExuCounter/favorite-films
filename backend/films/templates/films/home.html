@@ -2,4 +2,12 @@
 <!-- -->
 {% block title %}Home{% endblock %}
 <!-- -->
-{% block body %}Home{% endblock %}
+{% block body %}
+<div>
+  {% include "films/includes/logout.html" %}
+  <!-- -->
+  Hello, my friend, it's your start in the world of the backend programming -
+  <!-- -->
+  {{ user.login }}
+</div>
+{% endblock %}

@@ -17,36 +17,17 @@ class UserFactory(BaseFactory):
     password = factory.Faker("password")
 
 
-class AuthorFactory(BaseFactory):
+class TmdbFilmFactory(BaseFactory):
     class Meta:
-        model = models.Author
+        model = models.TmdbFilm
 
-    first_name = factory.Faker("first_name")
-    last_name = factory.Faker("last_name")
-
-
-class FilmFactory(BaseFactory):
-    class Meta:
-        model = models.Film
-
-    name = factory.Faker("sentence", nb_words=3)
-    description = factory.Faker("sentence", nb_words=20)
-    author = factory.SubFactory(AuthorFactory)
+    tmdb_id = factory.Faker("id")
     user = factory.SubFactory(UserFactory)
-
-
-class ActorFactory(BaseFactory):
-    class Meta:
-        model = models.Film
-
-    first_name = factory.Faker("first_name")
-    last_name = factory.Faker("last_name")
-    films = factory.RelatedFactory(FilmFactory)
 
 
 class CommentFactory(BaseFactory):
     class Meta:
-        model = models.Film
+        model = models.Comment
 
-    name = factory.Faker("sentence", nb_words=3)
-    description = factory.Faker("sentence", nb_words=20)
+    text = factory.Faker("sentence", nb_words=10)
+    film = factory.SubFactory(TmdbFilmFactory)

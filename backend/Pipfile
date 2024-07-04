@@ -10,6 +10,7 @@ faker = "*"
 factory-boy = "*"
 tvdb-v4-official = "*"
 django-browser-reload = "*"
+pyjwt = "*"
 
 [dev-packages]
 

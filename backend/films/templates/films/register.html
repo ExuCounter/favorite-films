@@ -4,11 +4,16 @@
 <!-- -->
 {% block body %}
 <div class="bg-pink-400 justify-center h-[100dvh] w-[100dvw] flex items-center">
-  <form class="w-[100%]">
+  <form class="w-[100%]" method="post">
     <div class="flex flex-col max-w-[500px] mx-auto">
-      <input type="text" name="login" placeholder="Login" />
-      <input type="password" name="password" placeholder="Password" />
-      <button class="bg-indigo-500 text-white">Sign up</button>
+      {% csrf_token %} {% for field in form %}
+      <div>
+        {{ field.errors }}
+        <div>{{ field.label_tag }}</div>
+        {{ field }}
+      </div>
+      {% endfor %}
+      <button class="bg-indigo-500 text-white" type="submit">Sign up</button>
     </div>
   </form>
 </div>

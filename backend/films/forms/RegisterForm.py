@@ -1,8 +1,8 @@
 from django import forms
-from films.operations.auth import AuthOperation, AuthOperationException
+from films.operations.auth import AuthOperation
 
 
-class LoginForm(forms.Form):
+class RegisterForm(forms.Form):
     login = forms.CharField(label="Login")
     password = forms.CharField(label="Password")
 
@@ -10,13 +10,9 @@ class LoginForm(forms.Form):
         self.auth_operation = AuthOperation()
         super().__init__(*args, **kwargs)
 
-    def sign_in(self, request):
+    def sign_up(self, request):
         login = self.cleaned_data["login"]
         password = self.cleaned_data["password"]
 
-        try:
-            self.auth_operation.login(request=request, login=login, password=password)
-
-            return "ok"
-        except AuthOperationException:
-            return "error"
+        self.auth_operation.sign_up(login=login, password=password)
+        self.auth_operation.login(request=request, login=login, password=password)
