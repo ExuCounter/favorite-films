@@ -1,0 +1,36 @@
+{% if user.login %}
+<div class="flex justify-between items-center bg-slate-300 p-[15px]">
+  <div class="flex gap-[20px]">
+    <!-- -->
+    {% url 'favorites' as favorites_url %}
+    <!-- -->
+    {% url 'home' as home_url %}
+    <!-- -->
+    {% if request.path == home_url %}
+    <span>Hi {{ user.login }}, it's your favorite films in one place</span>
+    {% endif %}
+    <!-- -->
+    <a href="{{ home_url }}" class="font-bold">Home</a>
+    <a href="{{ favorites_url }}" class="font-bold">Favorites</a>
+  </div>
+  {% include "films/includes/logout_form.html" %}
+</div>
+{% else %}
+<div class="flex justify-between items-center bg-slate-300 p-[15px]">
+  <span>Films</span
+  ><!-- -->
+  {% url 'login' as login_url %}
+  <!-- -->
+  {% url 'register' as register_url %}
+  <!-- -->
+  {% if request.path == login_url %}
+  <a href="{{ register_url }}"
+    ><button class="bg-slate-700 text-white px-7">Register</button></a
+  >
+  {% elif request.path == register_url %}
+  <a href="{{ login_url }}"
+    ><button class="bg-slate-700 text-white px-7">Login</button></a
+  >
+  {% endif %}
+</div>
+{% endif %}

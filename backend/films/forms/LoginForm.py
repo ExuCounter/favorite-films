@@ -3,8 +3,8 @@ from films.operations.auth import AuthOperation, AuthOperationException
 
 
 class LoginForm(forms.Form):
-    login = forms.CharField(label="Login")
-    password = forms.CharField(label="Password")
+    login = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'your username'}), label="Login")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'your password'}), label="Password")
 
     def __init__(self, *args, **kwargs):
         self.auth_operation = AuthOperation()
@@ -19,4 +19,4 @@ class LoginForm(forms.Form):
 
             return "ok"
         except AuthOperationException:
-            return "error"
+            return forms.ValidationError("Invalid login or username")

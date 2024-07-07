@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!-- -->
+{% block title %}Film{% endblock %}
+<!-- -->
+{% block body %}
+<div>
+  {% include "films/includes/header.html" %}<!-- -->
+  <!-- -->
+  <div class="bg-violet-200 min-h-[calc(100vh-78px)] flex justify-center pt-8 flex flex-col">
+    <div class="flex mx-auto gap-[30px]">
+      <div>
+        <img
+          class="w-[100%] h-[auto] max-w-[300px] max-h-[300px]"
+          src="{{ film.image }}"
+          alt="{{ film.name }}"
+        />
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold">{{ film.name }}</h1>
+        <p>Rating: {{ film.score }}</p>
+        <p>Release year: {{ film.year }}</p>
+        <p>Last updated: {{ film.lastUpdated }}</p>
+        <div class="pt-5">
+          {% include "films/includes/toggle_favorite_form.html" with film_id=film.id is_favorite=film.is_favorite %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- -->
+{% block title %}Favorite movies{% endblock %}
+<!-- -->
+{% block body %}
+<div class="bg-slate-300 height-[100%]">
+  {% include "films/includes/header.html" %}
+  <ul>
+    {% for film in films %}
+    <li>
+      {% url 'films' id=film.id as film_url %}
+      <a href="{{film_url}}">
+        <img src="{{film.image}}" class="w-[40px]" />
+        <p>{{ item.name }}</p>
+      </a>
+    </li>
+    {% empty %}
+    <li>No films yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

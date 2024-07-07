@@ -1,6 +1,11 @@
 <div>
-  <input name="query" id="search-input" />
-  <ul id="search-list"></ul>
+  <div class="max-w-[500px] w-[500px]">
+    <p class="pb-2">Search here:</p>
+    <input name="query" id="search-input" class="w-[100%]" />
+  </div>
+  <div>
+    <ul id="search-list"></ul>
+  </div>
 </div>
 
 <script>
@@ -40,13 +45,33 @@
     });
     const data = await response.json();
 
-    const searchItems = data.films.map((item) => {
-      return `<li><div class="flex items-center"><img src="${item.thumbnail}" class="w-[30px] h-[30px]" />${item.name}</div></li>`;
+    const fragment = document.createDocumentFragment();
+
+    const searchItems = data.films.forEach((item) => {
+      const listItem = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `/films/${item.tvdb_id}`;
+      const div = document.createElement("div");
+      div.className = "flex items-center p-4 gap-5 bg-slate-600 text-white";
+      const img = document.createElement("img");
+      img.src = item.thumbnail;
+      img.className = "w-[30px] h-[30px] rounded-[6px]";
+      const text = document.createTextNode(item.name);
+      div.appendChild(img);
+      div.appendChild(text);
+      link.appendChild(div);
+      listItem.appendChild(link);
+      console.log(item);
+
+      fragment.appendChild(listItem);
     });
-    searchList.innerHTML = searchItems.join("");
+
+    searchList.replaceChildren(fragment);
   };
 
   const debouncedEventListener = debounceFn(eventListener, 300);
+
+  eventListener({ target: { value: "value" } });
 
   const searchInput = document.getElementById("search-input");
   searchInput.addEventListener("input", debouncedEventListener);

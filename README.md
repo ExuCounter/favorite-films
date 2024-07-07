@@ -1,13 +1,9 @@
-# favorite-films
 -. CI/CD
 -. docker
 -. tests
 -. UI?
 
-get movie
-pass data to view
-in this view I can save and comment
+This project powered by TMDB API
 
-This project using TMDB API
-
-./tailwindcss -i ./static/base.css -o ./static/output.css --watch
+1. ./tailwindcss -i ./static/base.css -o ./static/output.css --watch
+2. python manage.py runserver

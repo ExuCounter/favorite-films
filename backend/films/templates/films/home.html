@@ -4,13 +4,8 @@
 <!-- -->
 {% block body %}
 <div>
-  {% include "films/includes/logout_form.html" %}
-  <!-- -->
-  Hello, my friend, it's your start in the world of the backend programming -
-  <!-- -->
-  {{ user.login }}
-
-  <div>
+  {% include "films/includes/header.html" %}
+  <div class="bg-violet-200 min-h-[calc(100vh-78px)] flex justify-center pt-8">
     {% include "films/includes/search.html" %}
   </div>
 </div>
